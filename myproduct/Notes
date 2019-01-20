@@ -1,0 +1,15 @@
+Hi,
+
+I have tried implementing the assignment as per given instructions and I am able to build the Rest API which is given desired response except one point
+
+1. And there is one issue observed in legacy service response that it is return the value of "now" field in price array sometimes Strings and array of Strings due to this program is unable to parse it successfully.
+For now I have ignored this "now" property from converting into json but have written logic for the same.
+
+2. Below requirement is not implemented due above issue since it has to calculate price reduction.
+"The array of products should only contain products with a price reduction and should be sorted to show the highest price reduction first. Price reduction is calculated using price.was - price.now."
+
+3. All main logics are implemented except few code documentations.
+
+4. Service Url:
+http://localhost:8010/v1?labelType=ShowWasThenNow
+ 

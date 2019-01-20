@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: my product
+
+server:
+  port: 8010
+  
+endpoint:
+  uri: https://jl-nonprod-syst.apigee.net/v1
+  path: /categories/600001506/products
+  
+  
