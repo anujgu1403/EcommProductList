@@ -1,6 +1,5 @@
 package com.product.client;
 
-import com.product.bean.Response;
 
 /**
  * This interface is used to communicate with integration factory.
@@ -13,8 +12,8 @@ public interface ProductClient {
 	/**
 	 * This method is used to get products list by calling the REST endpoint of integration factory
 	 * 
-	 * @return Response
+	 * @return String
 	 */
-	public Response getProduct();
+	public String getProduct();
 
 }
