@@ -14,7 +14,7 @@ import com.product.util.ProductListUtil;
 /**
  * @author Anuj Kumar
  * 
- *  This class is used to call the rest client to get product details.
+ *         This class is used to call the rest client to get product details.
  *
  */
 
@@ -25,8 +25,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductClient productClientImpl;
 
 	/**
-	 * This method has implementation of the getProductList method of ProductService
-	 * to prepare the product list
+	 * This method has implementation of the getProductList method of
+	 * ProductService to prepare the product list
 	 * 
 	 * @param labelType
 	 * @return List<FinalProduct>
@@ -41,32 +41,43 @@ public class ProductServiceImpl implements ProductService {
 			ObjectMapper objectMapper = new ObjectMapper();
 			JsonNode rootNode = objectMapper.readTree(jsonData);
 			JsonNode productsNode = rootNode.path("products");
+			float priceRed = 0.0f;
 
 			Iterator<JsonNode> prdItr = productsNode.elements();
 			while (prdItr.hasNext()) {
 				JsonNode node = prdItr.next();
-				FinalProduct finalProduct = new FinalProduct();				
+				FinalProduct finalProduct = new FinalProduct();
 				finalProduct.setProductId(node.get("productId").asText());
 				finalProduct.setTitle(node.get("title").asText());
 
 				JsonNode priceNode = node.get("price");
 				if (null != priceNode) {
 
-					//To set the price label
-					finalProduct.setPriceLabel(ProductListUtil.getPriceLabel(priceNode, labelType));
-					
-					//To set the now price
-					finalProduct.setNowPrice(ProductListUtil.getAbsolutePrice(ProductListUtil.getNowPrice(priceNode), priceNode.asText("currency")));
+					// To get the price reduction
+					priceRed = ProductListUtil.getPriceReduction(priceNode);
+
+					if (priceRed > 0) {
+						// To set the price label
+						finalProduct.setPriceLabel(ProductListUtil.getPriceLabel(priceNode, labelType));
+
+						// To set the now price
+						finalProduct.setNowPrice(ProductListUtil.getAbsolutePrice(
+								ProductListUtil.getNowPrice(priceNode), priceNode.get("currency").asText()));
+					}
 				}
 
+				if (priceRed > 0) {
+					JsonNode colorNode = node.path("colorSwatches");
+					if (null != colorNode) {
+
+						// To set the color swatches
+						finalProduct.setColorSwatches(ProductListUtil.getColorSwatchesList(colorNode));
+					}
+					products.add(finalProduct);
+				}
 				
-				JsonNode colorNode = node.path("colorSwatches");
-				if(null != colorNode) {		
-					
-					//To set the color swatches
-					finalProduct.setColorSwatches(ProductListUtil.getColorSwatchesList(colorNode));			
-				}			
-				products.add(finalProduct);
+				// To sort the final products list
+				ProductListUtil.sortProductList(products);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

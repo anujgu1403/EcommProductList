@@ -3,10 +3,12 @@ package com.product.util;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.product.bean.FinalColorSwatch;
+import com.product.bean.FinalProduct;
 
 /**
  * @author Anuj Kumar
@@ -91,10 +93,10 @@ public class ProductListUtil {
 	 * @return String
 	 */
 	public static String getNowPrice(JsonNode priceNode) {
-		String nowPrice = "";
+		String nowPrice = "";	
 		if (priceNode.get("now").isObject()) {
 			JsonNode nowNode = priceNode.get("now");
-			nowPrice = nowNode.get("to").asText();			
+			nowPrice = nowNode.get("from").asText();			
 		} else {
 			nowPrice = priceNode.get("now").asText();
 		}
@@ -144,5 +146,45 @@ public class ProductListUtil {
 			}
 		}
 		return finalColorSwatches;
+	}
+	
+	/**
+	 * This method is get the price reduction
+	 * 
+	 * @param priceNode
+	 * @return float
+	 */
+	public static float getPriceReduction(JsonNode priceNode) {
+		float wasPrice=0.0f, nowPrice=0.0f;
+
+		if (null != priceNode.get("was").asText() && !priceNode.get("was").asText().isEmpty())
+			wasPrice = Float.parseFloat(priceNode.get("was").asText());
+		
+        
+        if(priceNode.get("now").isObject()) {
+			JsonNode nowNode = priceNode.get("now");
+			if (null != nowNode.get("from").asText() && !nowNode.get("from").asText().isEmpty())
+				nowPrice = Float.parseFloat(nowNode.get("from").asText());			             
+        }else {              
+			if (null != priceNode.get("now").asText() && !priceNode.get("now").asText().isEmpty())
+				nowPrice = Float.parseFloat(priceNode.get("now").asText());
+        }		
+		return (wasPrice-nowPrice);
+	}
+	
+	/**
+	 * This method is sort the final product list
+	 * 
+	 * @param products
+	 * @return List<FinalProduct>
+	 */
+	public static List<FinalProduct> sortProductList(List<FinalProduct> products){
+		products.sort(new Comparator<FinalProduct>() {
+            @Override
+            public int compare(FinalProduct o1, FinalProduct o2) {
+                  return Integer.parseInt(o1.getNowPrice().replace('\u00a3', ' ').trim()) - Integer.parseInt(o2.getNowPrice().replace('\u00a3', ' ').trim());
+            }
+		});		
+		return products;
 	}
 }
