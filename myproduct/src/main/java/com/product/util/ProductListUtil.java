@@ -6,10 +6,19 @@ import com.product.bean.Price;
 
 /**
  * @author Anuj Kumar
+ * 
+ * This util class is used to have common methods used in product service.
  *
  */
 public class ProductListUtil {
 
+	/**
+	 * This method is used to form the price label according to various conditions
+	 * 
+	 * @param labelType
+	 * @param price
+	 * @return String
+	 */
 	public static String getPriceLabel(Price price, String labelType) {
 		String priceLabel = "";		
 		switch (labelType) {
@@ -33,9 +42,14 @@ public class ProductListUtil {
 		return priceLabel;
 	}
 	
-	public static String getAbsolutePrice(String price, String currency) {
-		System.out.println("price: "+price + "currency :"+currency);
-		
+	/**
+	 * This method is used to get the absolute price 
+	 * 
+	 * @param price
+	 * @param currency
+	 * @return String
+	 */
+	public static String getAbsolutePrice(String price, String currency) {		
 		String poundCurrency = "";
 		String priceValue = "";
 		if(currency.equalsIgnoreCase("GBP")) 
@@ -54,6 +68,12 @@ public class ProductListUtil {
 		return priceValue;
 		}
 	
+	/**
+	 * This method is used to get the hexa color code for color string value
+	 * 
+	 * @param basicColor
+	 * @return String
+	 */
 	public static String getHexaColorCode(String basicColor) {
 		String hexaColorCode = "";
 		if (null != basicColor) {

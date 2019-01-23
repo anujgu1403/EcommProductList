@@ -12,6 +12,8 @@ import com.product.util.ProductListUtil;
 
 /**
  * @author Anuj Kumar
+ * 
+ * This class is used to call the rest client to get product details.
  *
  */
 
@@ -21,6 +23,12 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductClient productClientImpl;
 	
+	/**
+	 * This method has implementation of the getProductList method of ProductService to prepare the product list
+	 * 
+	 * @param labelType
+	 * @return List<FinalProduct>
+	 */
 	@Override
 	public List<FinalProduct> getProductList(String labelType) {
 		Response response = productClientImpl.getProduct();
@@ -59,5 +67,4 @@ public class ProductServiceImpl implements ProductService {
 		});
 		return products;
 	}
-
 }

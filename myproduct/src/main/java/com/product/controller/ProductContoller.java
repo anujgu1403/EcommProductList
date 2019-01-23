@@ -13,7 +13,8 @@ import com.product.service.ProductService;
 
 /**
  * @author Anuj Kumar
- *
+ * 
+ * This class is rest controller which publish end point.
  */
 
 @RestController
@@ -22,6 +23,12 @@ public class ProductContoller {
 	@Autowired
 	ProductService productService;
 
+	/**
+	 * This method is used to call the getProductList method of ProductService
+	 * 
+	 * @param labelType
+	 * @return ResponseEntity<Response>
+	 */
 	@GetMapping(produces = "application/json",path="/v1")
 	public ResponseEntity<Response> getProductList(@RequestParam(required=false) String labelType){
 		if(null==labelType)
