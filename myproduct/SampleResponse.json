@@ -1,0 +1,89 @@
+{
+    "finalProductList": [
+        {
+            "productId": "3459039",
+            "title": "Hobbs Bayview Dress, Blue/Multi",
+            "nowPrice": "£55",
+            "priceLabel": "Was £89 now £55"
+        },
+        {
+            "productId": "3341058",
+            "title": "Jolie Moi Bonded Lace Prom Dress",
+            "colorSwatches": [
+                {
+                    "color": "Dark Grey",
+                    "rgbColor": "",
+                    "skuId": "237169362"
+                },
+                {
+                    "color": "Dark Mauve",
+                    "rgbColor": "",
+                    "skuId": "237169364"
+                },
+                {
+                    "color": "Dark Teal",
+                    "rgbColor": "ff0000ff",
+                    "skuId": "237169370"
+                },
+                {
+                    "color": "Berry",
+                    "rgbColor": "",
+                    "skuId": "237169205"
+                },
+                {
+                    "color": "Burgundy",
+                    "rgbColor": "ffff0000",
+                    "skuId": "237169270"
+                },
+                {
+                    "color": "Navy",
+                    "rgbColor": "ff0000ff",
+                    "skuId": "237169572"
+                },
+                {
+                    "color": "Royal Blue",
+                    "rgbColor": "ff0000ff",
+                    "skuId": "237169620"
+                }
+            ],
+            "nowPrice": "£59",
+            "priceLabel": "Was £85 then £68 now £59"
+        },
+        {
+            "productId": "3391561",
+            "title": "Phase Eight Katlyn Three Quarter Sleeve Spot Dress, Navy/Ivory",
+            "nowPrice": "£59",
+            "priceLabel": "Was £99 then £64 now £59"
+        },
+        {
+            "productId": "3467432",
+            "title": "Boden Rosamund Posy Stripe Dress",
+            "colorSwatches": [
+                {
+                    "color": "Navy",
+                    "rgbColor": "ff0000ff",
+                    "skuId": "237334043"
+                },
+                {
+                    "color": "Mimosa Yellow",
+                    "rgbColor": "ffffff00",
+                    "skuId": "237334029"
+                }
+            ],
+            "nowPrice": "£63",
+            "priceLabel": "Was £90 now £63"
+        },
+        {
+            "productId": "3428696",
+            "title": "Hobbs Kiona Dress, Green",
+            "nowPrice": "£74",
+            "priceLabel": "Was £149 then £89 now £74"
+        },
+        {
+            "productId": "3421340",
+            "title": "Phase Eight Beatrix Floral Printed Dress, Cream/Red",
+            "nowPrice": "£99",
+            "priceLabel": "Was £140 now £99"
+        }
+    ]
+}
