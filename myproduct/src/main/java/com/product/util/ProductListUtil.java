@@ -135,7 +135,6 @@ public class ProductListUtil {
 
 		List<FinalColorSwatch> finalColorSwatches = new ArrayList<FinalColorSwatch>();
 		Iterator<JsonNode> colorItr = colorNode.elements();
-		System.out.println("getColorSwatchesList: before forEachRemaining loop start: "+System.currentTimeMillis());
 		colorItr.forEachRemaining(tempNode->{
 			colorItr.next();
 			FinalColorSwatch finalColorSwatch = new FinalColorSwatch();
@@ -145,19 +144,7 @@ public class ProductListUtil {
 				finalColorSwatch.setRgbColor(ProductListUtil.getHexaColorCode(tempNode.get("basicColor").asText()));
 				finalColorSwatches.add(finalColorSwatch);
 			}
-		});
-		
-/*		while (colorItr.hasNext()) {
-			JsonNode tempNode = colorItr.next();
-			FinalColorSwatch finalColorSwatch = new FinalColorSwatch();
-			finalColorSwatch.setSkuId(tempNode.get("skuId").asText());
-			finalColorSwatch.setColor(tempNode.get("color").asText());
-			if (null != tempNode.get("basicColor").asText()) {
-				finalColorSwatch.setRgbColor(ProductListUtil.getHexaColorCode(tempNode.get("basicColor").asText()));
-				finalColorSwatches.add(finalColorSwatch);
-			}
-		}*/
-		System.out.println("getColorSwatchesList: after forEachRemaining loop end: "+System.currentTimeMillis());
+		});		
 		return finalColorSwatches;
 	}
 	

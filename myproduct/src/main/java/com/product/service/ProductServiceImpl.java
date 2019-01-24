@@ -42,9 +42,7 @@ public class ProductServiceImpl implements ProductService {
 			JsonNode rootNode = objectMapper.readTree(jsonData);
 			JsonNode productsNode = rootNode.path("products");
 			
-
 			Iterator<JsonNode> prdItr = productsNode.elements();
-			System.out.println("before forEachRemaining loop start: "+System.currentTimeMillis());
 			prdItr.forEachRemaining(node->{
 				prdItr.next();
 				float priceRed = 0.0f;
@@ -81,45 +79,7 @@ public class ProductServiceImpl implements ProductService {
 				// To sort the final products list
 				ProductListUtil.sortProductList(products);
 				
-			});
-			
-		
-//			while (prdItr.hasNext()) {
-//				JsonNode node = prdItr.next();
-//				FinalProduct finalProduct = new FinalProduct();
-//				finalProduct.setProductId(node.get("productId").asText());
-//				finalProduct.setTitle(node.get("title").asText());
-//
-//				JsonNode priceNode = node.get("price");
-//				if (null != priceNode) {
-//
-//					// To get the price reduction
-//					priceRed = ProductListUtil.getPriceReduction(priceNode);
-//
-//					if (priceRed > 0) {
-//						// To set the price label
-//						finalProduct.setPriceLabel(ProductListUtil.getPriceLabel(priceNode, labelType));
-//
-//						// To set the now price
-//						finalProduct.setNowPrice(ProductListUtil.getAbsolutePrice(
-//								ProductListUtil.getNowPrice(priceNode), priceNode.get("currency").asText()));
-//					}
-//				}
-//
-//				if (priceRed > 0) {
-//					JsonNode colorNode = node.path("colorSwatches");
-//					if (null != colorNode) {
-//
-//						// To set the color swatches
-//						finalProduct.setColorSwatches(ProductListUtil.getColorSwatchesList(colorNode));
-//					}
-//					products.add(finalProduct);
-//				}				
-//				
-//				// To sort the final products list
-//				ProductListUtil.sortProductList(products);
-//			}
-			System.out.println("after forEachRemaining loop end: "+System.currentTimeMillis());
+			});				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
