@@ -41,11 +41,11 @@ public class ProductServiceImpl implements ProductService {
 			ObjectMapper objectMapper = new ObjectMapper();
 			JsonNode rootNode = objectMapper.readTree(jsonData);
 			JsonNode productsNode = rootNode.path("products");
-			float priceRed = 0.0f;
-
+			
 			Iterator<JsonNode> prdItr = productsNode.elements();
-			while (prdItr.hasNext()) {
-				JsonNode node = prdItr.next();
+			prdItr.forEachRemaining(node->{
+				prdItr.next();
+				float priceRed = 0.0f;
 				FinalProduct finalProduct = new FinalProduct();
 				finalProduct.setProductId(node.get("productId").asText());
 				finalProduct.setTitle(node.get("title").asText());
@@ -74,11 +74,12 @@ public class ProductServiceImpl implements ProductService {
 						finalProduct.setColorSwatches(ProductListUtil.getColorSwatchesList(colorNode));
 					}
 					products.add(finalProduct);
-				}
+				}				
 				
 				// To sort the final products list
 				ProductListUtil.sortProductList(products);
-			}
+				
+			});				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
